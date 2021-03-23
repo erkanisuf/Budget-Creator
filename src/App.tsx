@@ -1,9 +1,14 @@
 import React from "react";
-import logo from "./logo.svg";
+
 import "./App.css";
+import AddItems from "./components/BudgedPlannerComps/AddItems";
 
 function App() {
-  return <h1 data-testid="testApp">App</h1>;
+  return (
+    <div>
+      <AddItems />
+    </div>
+  );
 }
 
 export default App;

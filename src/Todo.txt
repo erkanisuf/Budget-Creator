@@ -1,0 +1,10 @@
+TODO:
+
+1. Create Components
+-To add expense - DONE!
+-To show all expenses in a List  - DONE!
+-To show results of values  - DONE!
+-Option to delete expense  - DONE!
+-Option to Edit expense - DONE
+-Calculation
+- Style components
