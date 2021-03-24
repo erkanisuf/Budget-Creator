@@ -1,13 +1,24 @@
 import { FormEvent } from "react";
-
-// For the Props
-export interface BudgetItemArray {
+//Redux interfaces
+//Interface for expenses List
+export interface ExpensesList {
   items: BudgetItem[];
-  RemoveItem: (index: number) => void;
-  EditItem: (index: number, editItem: BudgetItem) => void;
 }
-// Single Object
+//Interface for results - budged,remaining,total expenses value:
+export interface BudgetResults {
+  budget: number;
+  expenses: number;
+  remaining: number;
+}
+
+//Redux interface for editing the item (index) is send by the function so we can edit the selected item
+export interface EditExpenseProps {
+  index: number;
+  editeitemValues: BudgetItem;
+}
+
+// Single Object for Expenses
 export interface BudgetItem {
   name: string;
-  value: number | null;
+  value: number;
 }

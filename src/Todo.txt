@@ -5,6 +5,9 @@ TODO:
 -To show all expenses in a List  - DONE!
 -To show results of values  - DONE!
 -Option to delete expense  - DONE!
--Option to Edit expense - DONE
+-Option to Edit expense - DONE!
 -Calculation
+    -Calculate Remaining
+    -Add Budget
+    -Calculate Expenses - DONE!
 - Style components

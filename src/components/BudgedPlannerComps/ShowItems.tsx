@@ -1,30 +1,30 @@
 import React, { FormEvent, useState } from "react";
-import { BudgetItem, BudgetItemArray } from "../../types";
+import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
+import { deleteItem, editExpense } from "../../Redux/valuesSlice";
+import { BudgetItem } from "../../types";
 // import { v4 as uuidv4 } from "uuid";
 
-const ShowItems: React.FC<BudgetItemArray> = ({
-  items,
-  RemoveItem,
-  EditItem,
-}) => {
+const ShowItems = () => {
+  const items = useAppSelector((state) => state.values.items); // Redux Selector (items )
+  const disptach = useAppDispatch();
   const [editOpen, setEditOpen] = useState<number | null>(null);
   const [editItem, setEditItem] = useState<BudgetItem>({
     name: "",
-    value: null,
+    value: 0,
   });
   // Changes the selected list item to editable mode with inputs
   const StartEdit = (index: number, el: BudgetItem) => {
     setEditItem(el);
     setEditOpen(index);
   };
-  // change values
+  // changes values expenses number
   const OnChangeNumber = (e: React.FormEvent<HTMLInputElement>) => {
     setEditItem({
       ...editItem,
       [e.currentTarget.name]: Number(e.currentTarget.value),
     });
   };
-  //change name
+  //changes name
   const OnChange = (e: React.FormEvent<HTMLInputElement>) => {
     setEditItem({
       ...editItem,
@@ -32,15 +32,20 @@ const ShowItems: React.FC<BudgetItemArray> = ({
     });
   };
 
-  //Save Edited Changes
+  //Save Edited Changes to Redux state
   const SaveEditedChanges = (e: FormEvent, index: number, el: BudgetItem) => {
     e.preventDefault();
-    EditItem(index, el);
+    const item = { index: index, editeitemValues: el }; // Creates object for the Redux (takes index and the new edited item)
+    disptach(editExpense(item));
     setEditOpen(null);
   };
   //Cancel Editing
   const CancelEdit = () => {
     setEditOpen(null);
+  };
+  //Remove item from Redux State
+  const deleteExpense = (index: number) => {
+    disptach(deleteItem(index));
   };
   return (
     <div>
@@ -77,7 +82,7 @@ const ShowItems: React.FC<BudgetItemArray> = ({
                   {el.name} - {el.value}
                 </span>
                 <span>
-                  <button onClick={() => RemoveItem(index)}>X</button>
+                  <button onClick={() => deleteExpense(index)}>X</button>
                 </span>
                 <span>
                   <button onClick={() => StartEdit(index, el)}>Edit</button>

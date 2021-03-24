@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { FormEvent } from "react";
+import { useAppDispatch } from "../../Redux/hooks";
+import { addItem } from "../../Redux/valuesSlice";
 import { BudgetItem } from "../../types";
+import BudgetResult from "./BudgetResult";
 import ShowItems from "./ShowItems";
 
 const AddItems = () => {
+  const dispatch = useAppDispatch(); // Redux
   const [item, setItem] = useState<BudgetItem>({ name: "", value: 0 });
-  const [items, setItems] = useState<BudgetItem[]>([]);
+
   //Changing the name of expense
   const OnChangeName = (e: React.FormEvent<HTMLInputElement>) => {
     setItem({ ...item, [e.currentTarget.name]: e.currentTarget.value });
@@ -17,29 +21,17 @@ const AddItems = () => {
       [e.currentTarget.name]: Number(e.currentTarget.value),
     });
   };
-  console.log(item);
-  console.log(items);
+
   //Submit the item and add it to list
   const AddExpense = (e: FormEvent) => {
     e.preventDefault();
-    setItems([...items, item]);
+    dispatch(addItem(item));
     setItem({ name: "", value: 0 });
   };
-  //Remove item from the expenses list
-  const RemoveItem = (index: number) => {
-    const copyState = [...items];
-    copyState.splice(index, 1);
-    setItems(copyState);
-  };
-  const EditItem = (index: number, el: BudgetItem) => {
-    console.log(index);
-    console.log(el);
-    const copyState = [...items];
-    copyState[index] = el;
-    setItems(copyState);
-  };
+
   return (
     <div>
+      <BudgetResult />
       <form onSubmit={AddExpense}>
         <label>
           <p>Name</p>
@@ -63,7 +55,7 @@ const AddItems = () => {
         </label>
         <input type="submit" value="Add" />
       </form>
-      <ShowItems items={items} RemoveItem={RemoveItem} EditItem={EditItem} />
+      <ShowItems />
     </div>
   );
 };
