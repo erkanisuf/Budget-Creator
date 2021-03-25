@@ -1,30 +1,31 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "./store";
-import { BudgetItem, BudgetResults } from "../types";
+import { BudgetItem, BudgetProps, BudgetResults } from "../types";
 
 const initialState: BudgetResults = {
   budget: 0,
-  expenses: 2,
+  expenses: 0,
   remaining: 0,
 };
 
 export const expensesResultSlice = createSlice({
   name: "budgedResult",
-  initialState: {
-    budget: 0,
-    expenses: 2,
-    remaining: 0,
-  },
+  initialState,
   reducers: {
-    calculateBudget: (state, action: PayloadAction<BudgetItem[]>) => {
-      const expenses = action.payload.reduce(
+    calculateBudget: (state, action: PayloadAction<BudgetProps>) => {
+      const budget = action.payload.budget;
+      const expenses = action.payload.items.reduce(
         (a: any, b: any) => a + b.value,
         0
       );
-      // Calculate Remaining
+      const remaining = action.payload.budget - expenses;
       // Add Budget
       console.log(expenses);
-      return (state = { budget: 11, expenses: expenses, remaining: 122 });
+      return (state = {
+        budget: budget,
+        expenses: expenses,
+        remaining: remaining,
+      });
     },
   },
 });

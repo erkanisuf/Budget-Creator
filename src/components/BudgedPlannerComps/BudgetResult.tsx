@@ -6,30 +6,35 @@ const BudgetResult = () => {
   const budged = useAppSelector((state) => state.budgedResult); // Redux Selector (items )
   const items = useAppSelector((state) => state.values.items);
   const disptach = useAppDispatch();
-  const [budget, setBudget] = useState<number | null>(null);
+  const [input, setInput] = useState<number>(0);
+  const [budget, setBudget] = useState<number>(0);
 
   //input
   const OnChangeNumber = (e: React.FormEvent<HTMLInputElement>) => {
-    setBudget(Number(e.currentTarget.value));
+    setInput(Number(e.currentTarget.value));
   };
   //Add budged
-  const calculateBudged = (e: FormEvent) => {
+  const addBudget = (e: FormEvent) => {
     e.preventDefault();
+    setBudget(input);
+    setInput(0);
+    disptach(calculateBudget({ items: items, budget: budget }));
   };
 
-  useEffect(() => {}, [items, disptach]);
+  useEffect(() => {
+    disptach(calculateBudget({ items: items, budget: budget }));
+  }, [items, disptach, budget]);
   return (
     <div>
-      <button onClick={() => disptach(calculateBudget(items))}>KUR</button>
-      <form onSubmit={calculateBudged}>
+      <form onSubmit={addBudget}>
         <label>
           My budged:
           <input
-            type="numbert"
+            type="number"
             placeholder="budged"
             name="budged"
             onChange={OnChangeNumber}
-            value={budget?.toString()}
+            value={input}
           />
         </label>
         <input type="submit" value="Add Budget " />
