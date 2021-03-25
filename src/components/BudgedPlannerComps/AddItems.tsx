@@ -3,6 +3,7 @@ import { FormEvent } from "react";
 import { useAppDispatch } from "../../Redux/hooks";
 import { addItem } from "../../Redux/valuesSlice";
 import { BudgetItem } from "../../types";
+import { DivAddExpense } from "./BudgetPlannerStyles";
 import BudgetResult from "./BudgetResult";
 import ShowItems from "./ShowItems";
 
@@ -30,11 +31,10 @@ const AddItems = () => {
   };
 
   return (
-    <div>
-      <BudgetResult />
+    <DivAddExpense width={40} direction={`column`}>
       <form onSubmit={AddExpense}>
-        <label>
-          <p>Name</p>
+        <div>
+          <p>Expense name</p>
           <input
             type="text"
             placeholder="name"
@@ -42,9 +42,10 @@ const AddItems = () => {
             value={item.name}
             onChange={OnChangeName}
           />
-        </label>
-        <label>
-          <p>Value</p>
+        </div>
+        <div>
+          <p>Cost</p>
+
           <input
             type="number"
             placeholder="value"
@@ -52,11 +53,12 @@ const AddItems = () => {
             value={item.value?.toString()} // The input takes only strings
             onChange={OnChangeNumber}
           />
-        </label>
+          <span> €</span>
+        </div>
+
         <input type="submit" value="Add" />
       </form>
-      <ShowItems />
-    </div>
+    </DivAddExpense>
   );
 };
 
