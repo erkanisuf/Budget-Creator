@@ -31,7 +31,7 @@ const AddItems = () => {
   };
 
   return (
-    <DivAddExpense width={40} direction={`column`}>
+    <DivAddExpense width={40} direction={`column`} inputwidth={50}>
       <form onSubmit={AddExpense}>
         <div>
           <p>Expense name</p>

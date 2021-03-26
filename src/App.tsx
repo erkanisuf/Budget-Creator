@@ -7,8 +7,8 @@ import ShowItems from "./components/BudgedPlannerComps/ShowItems";
 function App() {
   return (
     <div>
-      <AddItems />
       <BudgetResult />
+      <AddItems />
       <ShowItems />
     </div>
   );
