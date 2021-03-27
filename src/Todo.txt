@@ -7,7 +7,7 @@ TODO:
 -Option to delete expense  - DONE!
 -Option to Edit expense - DONE!
 -Calculation
-    -Calculate Remaining
-    -Add Budget
+    -Calculate Remaining - DONE!
+    -Add Budget- DONE!
     -Calculate Expenses - DONE!
 - Style components
