@@ -3,10 +3,11 @@ import { calculateBudget } from "../../Redux/expensesResultSlice";
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import {
   BudgetResultWrapper,
-  DivAddExpense,
   FlexDiv,
+  PlusButton,
 } from "./BudgetPlannerStyles";
 import { GiPayMoney, GiReceiveMoney, GiTakeMyMoney } from "react-icons/gi";
+import { AiOutlinePlus } from "react-icons/ai";
 const BudgetResult = () => {
   const budged = useAppSelector((state) => state.budgedResult); // Redux Selector (items )
   const items = useAppSelector((state) => state.values.items);
@@ -31,7 +32,7 @@ const BudgetResult = () => {
   }, [items, disptach, budget]);
   return (
     <div>
-      <FlexDiv direction="row" width={50} margin="0 auto">
+      <FlexDiv direction="row" width={40} margin="0 auto">
         <BudgetResultWrapper width={20} background="#B084CC" direction="column">
           <div>
             <GiTakeMyMoney fontSize="40px" />
@@ -54,16 +55,19 @@ const BudgetResult = () => {
       </FlexDiv>
       <FlexDiv
         direction="row"
-        style={{ justifyContent: "flex-start", alignItems: "flex-start" }}
-        margin="5px auto"
-        width={40}
+        style={{
+          justifyContent: "flex-start",
+          alignItems: "flex-start",
+          margin: "15px auto",
+        }}
+        width={80}
       >
         <BudgetResultWrapper
-          width={100}
+          width={50}
           background="#474B4F"
-          style={{ margin: "0" }}
-          direction="column"
-          inputwidth={40}
+          style={{ margin: "0 auto" }}
+          direction="row"
+          inputwidth={100}
         >
           <form onSubmit={addBudget}>
             <label>
@@ -76,7 +80,9 @@ const BudgetResult = () => {
                 value={input}
               />
             </label>
-            <input type="submit" value="Add Budget " />
+            <PlusButton borderRadius>
+              <AiOutlinePlus />
+            </PlusButton>
           </form>
         </BudgetResultWrapper>
       </FlexDiv>

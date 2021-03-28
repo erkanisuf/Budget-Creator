@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { FormEvent } from "react";
 import { useAppDispatch } from "../../Redux/hooks";
 import { addItem } from "../../Redux/valuesSlice";
 import { BudgetItem } from "../../types";
-import { DivAddExpense } from "./BudgetPlannerStyles";
-import BudgetResult from "./BudgetResult";
-import ShowItems from "./ShowItems";
-
+import { DivAddExpense, PlusButton } from "./BudgetPlannerStyles";
+import { AiOutlinePlus } from "react-icons/ai";
 const AddItems = () => {
+  const focusRef = useRef<HTMLInputElement | null>(null);
   const dispatch = useAppDispatch(); // Redux
-  const [item, setItem] = useState<BudgetItem>({ name: "", value: 0 });
+  const [item, setItem] = useState<BudgetItem>({
+    name: "",
+    value: 0,
+    category: "",
+  });
 
   //Changing the name of expense
   const OnChangeName = (e: React.FormEvent<HTMLInputElement>) => {
@@ -27,15 +30,17 @@ const AddItems = () => {
   const AddExpense = (e: FormEvent) => {
     e.preventDefault();
     dispatch(addItem(item));
-    setItem({ name: "", value: 0 });
+    setItem({ name: "", value: 0, category: "" });
+    focusRef.current?.focus();
   };
 
   return (
-    <DivAddExpense width={40} direction={`column`} inputwidth={50}>
+    <DivAddExpense width={40} direction={`column`} inputwidth={100}>
       <form onSubmit={AddExpense}>
         <div>
           <p>Expense name</p>
           <input
+            ref={focusRef}
             type="text"
             placeholder="name"
             name="name"
@@ -55,8 +60,28 @@ const AddItems = () => {
           />
           <span> €</span>
         </div>
+        <div>
+          <p>Category</p>
 
-        <input type="submit" value="Add" />
+          <input
+            type="text"
+            placeholder="Item category"
+            name="Item Category"
+            value={item.category} // The input takes only strings
+            onChange={OnChangeName}
+          />
+        </div>
+        <div
+          style={{
+            flex: 0,
+            alignSelf: "flex-end",
+          }}
+        >
+          <PlusButton borderRadius={false} padding={10}>
+            {" "}
+            <AiOutlinePlus />
+          </PlusButton>
+        </div>
       </form>
     </DivAddExpense>
   );

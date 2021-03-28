@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "./store";
-import { BudgetItem, BudgetProps, BudgetResults } from "../types";
+import { BudgetProps, BudgetResults } from "../types";
 
 const initialState: BudgetResults = {
   budget: 0,

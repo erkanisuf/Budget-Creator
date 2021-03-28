@@ -26,4 +26,5 @@ export interface EditExpenseProps {
 export interface BudgetItem {
   name: string;
   value: number;
+  category: string;
 }

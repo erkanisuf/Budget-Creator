@@ -1,7 +1,13 @@
 import React, { FormEvent, useState } from "react";
+import { AiFillDelete } from "react-icons/ai";
+import { FaRegEdit } from "react-icons/fa";
+import { ImCheckmark } from "react-icons/im";
+import { TiCancel } from "react-icons/ti";
+
 import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import { deleteItem, editExpense } from "../../Redux/valuesSlice";
 import { BudgetItem } from "../../types";
+import { EditButton, FlexDiv, Item, XButton } from "./BudgetPlannerStyles";
 // import { v4 as uuidv4 } from "uuid";
 
 const ShowItems = () => {
@@ -11,6 +17,7 @@ const ShowItems = () => {
   const [editItem, setEditItem] = useState<BudgetItem>({
     name: "",
     value: 0,
+    category: "",
   });
   // Changes the selected list item to editable mode with inputs
   const StartEdit = (index: number, el: BudgetItem) => {
@@ -48,10 +55,20 @@ const ShowItems = () => {
     disptach(deleteItem(index));
   };
   return (
-    <div>
+    <FlexDiv direction="column" width={40} style={{ margin: "0 auto" }}>
+      <Item width={100} style={{ borderRadius: "15px" }} background>
+        <div style={{ fontSize: "13px", fontWeight: 500 }}>
+          <div>Expense name</div>
+          <div style={{ marginLeft: "0px" }}>Value</div>
+          <div>
+            <span> </span>
+            <span> </span>
+          </div>
+        </div>
+      </Item>
       {items.map((el, index) => {
         return (
-          <div key={index}>
+          <Item key={index} width={100} borderBottom>
             {editOpen === index ? (
               <form onSubmit={(e) => SaveEditedChanges(e, index, editItem)}>
                 <input
@@ -69,30 +86,33 @@ const ShowItems = () => {
                   onChange={OnChangeNumber}
                 />
 
-                <span>
-                  <button onClick={CancelEdit}>Cancel</button>
-                </span>
-                <span>
-                  <input type="submit" value="Save" />
-                </span>
+                <div style={{ justifyContent: "center" }}>
+                  <XButton onClick={CancelEdit}>
+                    <TiCancel />
+                  </XButton>
+                  <EditButton type="submit">
+                    <ImCheckmark />
+                  </EditButton>
+                </div>
               </form>
             ) : (
               <div>
-                <span>
-                  {el.name} - {el.value}
-                </span>
-                <span>
-                  <button onClick={() => deleteExpense(index)}>X</button>
-                </span>
-                <span>
-                  <button onClick={() => StartEdit(index, el)}>Edit</button>
-                </span>
+                <div>{el.name}</div>
+                <div>{el.value} €</div>
+                <div style={{ justifyContent: "center" }}>
+                  <XButton onClick={() => deleteExpense(index)}>
+                    <AiFillDelete />
+                  </XButton>
+                  <EditButton onClick={() => StartEdit(index, el)}>
+                    <FaRegEdit />
+                  </EditButton>
+                </div>
               </div>
             )}
-          </div>
+          </Item>
         );
       })}
-    </div>
+    </FlexDiv>
   );
 };
 
