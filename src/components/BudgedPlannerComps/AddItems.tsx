@@ -1,12 +1,19 @@
 import React, { useRef, useState } from "react";
 import { FormEvent } from "react";
-import { useAppDispatch } from "../../Redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../Redux/hooks";
 import { addItem } from "../../Redux/valuesSlice";
 import { BudgetItem } from "../../types";
-import { DivAddExpense, PlusButton } from "./BudgetPlannerStyles";
+import {
+  BudgetResultWrapper,
+  DivAddExpense,
+  PlusButton,
+} from "./BudgetPlannerStyles";
 import { AiOutlinePlus } from "react-icons/ai";
+import { addBudgetState } from "../../Redux/expensesResultSlice";
 const AddItems = () => {
+  const reduxBudget = useAppSelector((state) => state.budgedResult.budget);
   const focusRef = useRef<HTMLInputElement | null>(null);
+  const focusMyBudgetInputRef = useRef<HTMLInputElement | null>(null);
   const dispatch = useAppDispatch(); // Redux
   const [item, setItem] = useState<BudgetItem>({
     name: "",
@@ -14,6 +21,21 @@ const AddItems = () => {
     category: "",
   });
 
+  // Input For Budget Reducer
+
+  const [budget, setBudget] = useState<number>(0);
+
+  //input For Budget Reducer
+  const OnChangeNumberBudget = (e: React.FormEvent<HTMLInputElement>) => {
+    setBudget(Number(e.currentTarget.value));
+  };
+  //Add budged  For Budget Reducer
+  const addBudget = (e: FormEvent) => {
+    e.preventDefault();
+
+    dispatch(addBudgetState({ budget: budget }));
+    setBudget(0);
+  };
   //Changing the name of expense
   const OnChangeName = (e: React.FormEvent<HTMLInputElement>) => {
     setItem({ ...item, [e.currentTarget.name]: e.currentTarget.value });
@@ -29,61 +51,101 @@ const AddItems = () => {
   //Submit the item and add it to list
   const AddExpense = (e: FormEvent) => {
     e.preventDefault();
+    if (reduxBudget <= 0) {
+      alert("Please add budget first");
+      focusMyBudgetInputRef.current?.focus();
+      return;
+    }
     dispatch(addItem(item));
     setItem({ name: "", value: 0, category: "" });
     focusRef.current?.focus();
   };
 
   return (
-    <DivAddExpense width={40} direction={`column`} inputwidth={100}>
-      <form onSubmit={AddExpense}>
-        <div>
-          <p>Expense name</p>
-          <input
-            ref={focusRef}
-            type="text"
-            placeholder="name"
-            name="name"
-            value={item.name}
-            onChange={OnChangeName}
-          />
-        </div>
-        <div>
-          <p>Cost</p>
-
-          <input
-            type="number"
-            placeholder="value"
-            name="value"
-            value={item.value?.toString()} // The input takes only strings
-            onChange={OnChangeNumber}
-          />
-          <span> €</span>
-        </div>
-        <div>
-          <p>Category</p>
-
-          <input
-            type="text"
-            placeholder="Item category"
-            name="Item Category"
-            value={item.category} // The input takes only strings
-            onChange={OnChangeName}
-          />
-        </div>
-        <div
-          style={{
-            flex: 0,
-            alignSelf: "flex-end",
-          }}
-        >
-          <PlusButton borderRadius={false} padding={10}>
-            {" "}
+    <div>
+      <BudgetResultWrapper
+        width={40}
+        background="#474B4F"
+        style={{ margin: "0 auto" }}
+        direction="row"
+        inputwidth={100}
+      >
+        <form onSubmit={addBudget}>
+          <label>
+            My budged:
+            <input
+              ref={focusMyBudgetInputRef}
+              required
+              type="number"
+              placeholder="budged"
+              name="budged"
+              onChange={OnChangeNumberBudget}
+              value={budget}
+            />
+          </label>
+          <PlusButton borderRadius>
             <AiOutlinePlus />
           </PlusButton>
-        </div>
-      </form>
-    </DivAddExpense>
+        </form>
+      </BudgetResultWrapper>
+
+      <DivAddExpense width={40} direction={`column`} inputwidth={100}>
+        <form onSubmit={AddExpense}>
+          <div>
+            <p>Expense name</p>
+            <input
+              required
+              ref={focusRef}
+              type="text"
+              placeholder="name"
+              name="name"
+              value={item.name}
+              onChange={OnChangeName}
+            />
+          </div>
+          <div>
+            <p>Cost</p>
+
+            <input
+              required
+              type="number"
+              placeholder="value"
+              name="value"
+              value={item.value?.toString()} // The input takes only strings
+              onChange={OnChangeNumber}
+            />
+            <span> €</span>
+          </div>
+          <div>
+            <p>Category</p>
+
+            <input
+              required
+              type="text"
+              placeholder="Item category"
+              name="category"
+              value={item.category} // The input takes only strings
+              onChange={OnChangeName}
+            />
+          </div>
+          <div
+            style={{
+              flex: 0,
+              alignSelf: "flex-end",
+            }}
+          >
+            <PlusButton
+              data-testid="addexpensebtn"
+              borderRadius={false}
+              padding={10}
+            >
+              {" "}
+              <AiOutlinePlus />
+            </PlusButton>
+          </div>
+        </form>
+      </DivAddExpense>
+    </div>
   );
 };
 

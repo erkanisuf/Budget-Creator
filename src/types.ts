@@ -12,8 +12,10 @@ export interface BudgetResults {
   remaining: number;
 }
 // Interface for Budget with two arguments, first one takes state(items) and second one the added budget from BudgetResult.tsx
-export interface BudgetProps {
+export interface IcalculateBudget {
   items: BudgetItem[];
+}
+export interface BudgetProps {
   budget: number;
 }
 //Redux interface for editing the item (index) is send by the function so we can edit the selected item
