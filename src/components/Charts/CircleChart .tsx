@@ -67,7 +67,8 @@ const CircleChart = () => {
           textAnchor={x > cx ? "start" : "end"}
           dominantBaseline="central"
         >
-          {payload.value < 1 && payload.value > 0 ? 0 : payload.value}€
+          {payload.value < 1 && payload.value > 0 ? 0 : payload.value}€ (
+          {`${(percent * 100).toFixed(0)}%`})
         </text>
 
         <text
@@ -80,7 +81,6 @@ const CircleChart = () => {
         >
           {payload.name} ({`${(percent * 100).toFixed(0)}%`})
         </text>
-        <text>GG</text>
       </g>
     );
   };
@@ -93,7 +93,9 @@ const CircleChart = () => {
           className="custom-tooltip"
           style={{ backgroundColor: "rgba(7, 7, 7, 0.8)", padding: "25px" }}
         >
-          <p className="label">{`${payload[0].name} : ${payload[0].value}€`}</p>
+          <p className="label">{`${payload[0].name} : ${
+            payload[0].value < 1 && payload[0].value > 0 ? 0 : payload.value
+          }€`}</p>
         </div>
       );
     }
@@ -112,7 +114,7 @@ const CircleChart = () => {
             isAnimationActive={true}
             labelLine={true}
             label={renderCustomizedLabel}
-            outerRadius={150}
+            outerRadius={170}
             innerRadius={100}
             fill="#8884d8"
             dataKey="value"

@@ -60,6 +60,7 @@ const ShowItems = () => {
         <div style={{ fontSize: "13px", fontWeight: 500 }}>
           <div>Expense name</div>
           <div style={{ marginLeft: "0px" }}>Value</div>
+          <div>Category </div>
           <div>
             <span> </span>
             <span> </span>
@@ -99,6 +100,7 @@ const ShowItems = () => {
               <div>
                 <div>{el.name}</div>
                 <div>{el.value} €</div>
+                <div>{el.category} </div>
                 <div style={{ justifyContent: "center" }}>
                   <XButton onClick={() => deleteExpense(index)}>
                     <AiFillDelete />
