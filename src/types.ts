@@ -10,6 +10,7 @@ export interface BudgetResults {
   budget: number;
   expenses: number;
   remaining: number;
+  negativeRemainings?: number;
 }
 // Interface for Budget with two arguments, first one takes state(items) and second one the added budget from BudgetResult.tsx
 export interface IcalculateBudget {

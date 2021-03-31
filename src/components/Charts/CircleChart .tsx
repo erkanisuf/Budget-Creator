@@ -1,15 +1,7 @@
 import React from "react";
-import {
-  PieChart,
-  Pie,
-  Sector,
-  Cell,
-  ResponsiveContainer,
-  Tooltip,
-} from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import { useAppSelector } from "../../Redux/hooks";
 const CircleChart = () => {
-  const items = useAppSelector((state) => state.values.items);
   const expenseResults = useAppSelector((state) => state.budgedResult);
   console.log(expenseResults);
 
@@ -94,7 +86,7 @@ const CircleChart = () => {
           style={{ backgroundColor: "rgba(7, 7, 7, 0.8)", padding: "25px" }}
         >
           <p className="label">{`${payload[0].name} : ${
-            payload[0].value < 1 && payload[0].value > 0 ? 0 : payload.value
+            payload[0].value < 1 && payload[0].value > 0 ? 0 : payload[0].value
           }€`}</p>
         </div>
       );

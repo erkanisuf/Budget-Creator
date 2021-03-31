@@ -6,6 +6,7 @@ const initialState: BudgetResults = {
   budget: 0,
   expenses: 0,
   remaining: 0,
+  negativeRemainings: 0,
 };
 
 export const expensesResultSlice = createSlice({
@@ -24,6 +25,7 @@ export const expensesResultSlice = createSlice({
         ...state,
         expenses: expenses,
         remaining: remaining < 0 ? 0 : remaining,
+        negativeRemainings: remaining < 0 ? remaining : 0,
       });
     },
     addBudgetState: (state, action: PayloadAction<BudgetProps>) => {
