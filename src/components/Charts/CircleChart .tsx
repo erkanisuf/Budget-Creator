@@ -20,7 +20,17 @@ const CircleChart = () => {
     },
   ];
 
-  const COLORS = ["#B084CC", "#27A58C", "#BA324F"];
+  //Changing color function depending on result positive or negative remaining
+  const RemainingIsPositive = () => {
+    let isPositive = "#54bd3a";
+    if (expenseResults.negativeRemainings) {
+      if (expenseResults.negativeRemainings < 0) {
+        isPositive = "#BA324F";
+      }
+    }
+    return isPositive;
+  };
+  const COLORS = ["#B084CC", "#27A58C", RemainingIsPositive()];
 
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({

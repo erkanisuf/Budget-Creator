@@ -14,6 +14,7 @@ const BudgetResult = () => {
     disptach(calculateBudget({ items: items }));
   }, [items, disptach, budged.budget]);
 
+  //Function that changes color depending on remaining if positive or negative number
   const RemainingIsPositive = () => {
     let isPositive = "#54bd3a";
     if (budged.negativeRemainings) {
