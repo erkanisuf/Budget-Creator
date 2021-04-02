@@ -74,6 +74,7 @@ const AddItems = () => {
           <label>
             My budged:
             <input
+              data-testid="addBudgetInput"
               ref={focusMyBudgetInputRef}
               required
               type="number"
@@ -83,7 +84,7 @@ const AddItems = () => {
               value={budget}
             />
           </label>
-          <PlusButton borderRadius>
+          <PlusButton data-testid="addBudgetBtn" borderRadius>
             <AiOutlinePlus />
           </PlusButton>
         </form>
@@ -94,6 +95,7 @@ const AddItems = () => {
           <div>
             <p>Expense name</p>
             <input
+              data-testid="inputName"
               required
               ref={focusRef}
               type="text"
@@ -105,21 +107,22 @@ const AddItems = () => {
           </div>
           <div>
             <p>Cost</p>
-
             <input
+              data-testid="inputNumber"
               required
               type="number"
               placeholder="value"
               name="value"
               value={item.value?.toString()} // The input takes only strings
               onChange={OnChangeNumber}
-            />
-            <span> €</span>
+            />{" "}
+            €
           </div>
           <div>
             <p>Category</p>
 
             <input
+              data-testid="inputCategory"
               required
               type="text"
               placeholder="Item category"

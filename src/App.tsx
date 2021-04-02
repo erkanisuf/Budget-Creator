@@ -25,9 +25,11 @@ function App() {
       .then((el) => console.log(el))
       .catch((err) => console.log(err));
   };
+
   return (
     <div>
       <button onClick={test}>LIK</button>
+
       <BarCharts />
       <CircleChart />
       <BudgetResult />
