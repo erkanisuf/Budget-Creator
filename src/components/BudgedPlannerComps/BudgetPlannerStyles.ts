@@ -71,6 +71,8 @@ export const BudgetResultWrapper = styled.div<IBudgetResultWrapper>`
   flex-direction: ${(props) => props.direction};
   padding: 25px;
   margin: 0 15px;
+  overflow: hidden;
+
   border-radius: 20px;
   align-items: center;
   transition: 1s;
@@ -134,11 +136,14 @@ export interface IFlexDiv {
   background?: string;
   padding?: number;
   margin?: string;
+  justify?: string;
 }
 export const FlexDiv = styled.div<IFlexDiv>`
   background-color: ${(props) => props.background};
   width: ${(props) => props.width}%;
-  justify-content: space-between;
+
+  justify-content: ${(props) =>
+    props.justify ? props.justify : "space-between"};
   display: flex;
   flex-direction: ${(props) => props.direction};
   padding: ${(props) => props.padding}px;

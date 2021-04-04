@@ -55,7 +55,7 @@ const ShowItems = () => {
     disptach(deleteItem(index));
   };
   return (
-    <FlexDiv direction="column" width={40} style={{ margin: "0 auto" }}>
+    <FlexDiv direction="column" width={80} style={{ margin: "0 auto" }}>
       <Item width={100} style={{ borderRadius: "15px" }} background>
         <div style={{ fontSize: "13px", fontWeight: 500 }}>
           <div>Expense name</div>
@@ -67,6 +67,17 @@ const ShowItems = () => {
           </div>
         </div>
       </Item>
+      {!items.length && (
+        <p
+          style={{
+            width: "100%",
+            textAlign: "center",
+            fontSize: "25px",
+          }}
+        >
+          No expenses added
+        </p>
+      )}
       {items.map((el, index) => {
         return (
           <Item key={index} width={100} borderBottom>

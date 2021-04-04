@@ -26,7 +26,7 @@ const BudgetResult = () => {
   };
   return (
     <div>
-      <FlexDiv direction="row" width={40} margin="0 auto">
+      <FlexDiv direction="row" width={80} margin="0 auto">
         <BudgetResultWrapper width={20} background="#B084CC" direction="column">
           <div>
             <GiTakeMyMoney fontSize="40px" />

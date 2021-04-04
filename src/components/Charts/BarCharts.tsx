@@ -103,8 +103,29 @@ const BarCharts = () => {
   };
 
   return (
-    <div style={{ width: "600px", height: "500px", margin: "0px auto" }}>
-      {" "}
+    <div
+      style={{
+        width: "60%",
+        height: "600px",
+        borderTop: "1px solid #474b4f",
+        position: "relative",
+        margin: "0 auto",
+      }}
+    >
+      {!myData.length && (
+        <p
+          style={{
+            width: "100%",
+            position: "absolute",
+            fontSize: "25px",
+            top: "30%",
+            left: "40%",
+          }}
+        >
+          No expenses added
+        </p>
+      )}
+
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           width={500}

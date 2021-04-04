@@ -64,7 +64,7 @@ const AddItems = () => {
   return (
     <div>
       <BudgetResultWrapper
-        width={40}
+        width={80}
         background="#474B4F"
         style={{ margin: "0 auto" }}
         direction="row"
@@ -90,7 +90,7 @@ const AddItems = () => {
         </form>
       </BudgetResultWrapper>
 
-      <DivAddExpense width={40} direction={`column`} inputwidth={100}>
+      <DivAddExpense width={80} direction={`column`} inputwidth={100}>
         <form onSubmit={AddExpense}>
           <div>
             <p>Expense name</p>
