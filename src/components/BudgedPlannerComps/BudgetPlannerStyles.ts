@@ -1,3 +1,4 @@
+import { props } from "cypress/types/bluebird";
 import styled from "styled-components";
 //Colors
 const divbackground = "#474B4F";
@@ -246,5 +247,31 @@ export const EditButton = styled.button`
 
   &:hover {
     background-color: ${violetColorHover};
+  }
+`;
+
+//Button Save to Database Session
+interface ISavedDBButton {
+  width: number;
+}
+export const SaveDBButton = styled.button<ISavedDBButton>`
+  width: ${(props) => props.width}px;
+  background-color: ${violetColor};
+  outline: none;
+  border: none;
+  align-self: center;
+  padding: 15px 5px;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  border-radius: 5px;
+  margin: 5px;
+  &:hover {
+    background-color: ${violetColorHover};
+  }
+  &:disabled {
+    cursor: default;
+
+    background-color: grey;
   }
 `;

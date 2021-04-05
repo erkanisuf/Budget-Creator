@@ -9,7 +9,7 @@ interface Props {
 const Layout: React.FC<Props> = (props) => {
   return (
     <FlexDiv direction="row" justify="flex-start" width={100}>
-      <div style={{ height: "100vh", width: "200px" }}>
+      <div style={{ height: "100vh", width: "5%" }}>
         <NavContainer
           style={{ height: "100%", paddingBottom: "100px" }}
           toggle={true}

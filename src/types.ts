@@ -28,6 +28,22 @@ export interface EditExpenseProps {
 // Single Object for Expenses
 export interface BudgetItem {
   name: string;
+  itemId: string;
   value: number;
   category: string;
+}
+
+//DATABASE Types
+//Post Request to save Expenses and Budget Results .The whole session model
+
+export interface ISaveSessionToDB {
+  user: string;
+  listId: string;
+  expenses: BudgetItem[];
+  budgetValues: {
+    budget: number;
+    remaining: number;
+    expenses: number;
+  };
+  dateAdded: string;
 }

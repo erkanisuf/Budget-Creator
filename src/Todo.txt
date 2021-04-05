@@ -12,3 +12,4 @@ TODO:
     -Calculate Expenses - DONE!
 - Style components
 - Make Backend in .Net
+ 

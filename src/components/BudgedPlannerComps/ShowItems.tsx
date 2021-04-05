@@ -12,12 +12,14 @@ import { EditButton, FlexDiv, Item, XButton } from "./BudgetPlannerStyles";
 
 const ShowItems = () => {
   const items = useAppSelector((state) => state.values.items); // Redux Selector (items )
+
   const disptach = useAppDispatch();
   const [editOpen, setEditOpen] = useState<number | null>(null);
   const [editItem, setEditItem] = useState<BudgetItem>({
     name: "",
     value: 0,
     category: "",
+    itemId: "",
   });
   // Changes the selected list item to editable mode with inputs
   const StartEdit = (index: number, el: BudgetItem) => {
@@ -31,7 +33,7 @@ const ShowItems = () => {
       [e.currentTarget.name]: Number(e.currentTarget.value),
     });
   };
-  //changes name
+  //changes name and Category
   const OnChange = (e: React.FormEvent<HTMLInputElement>) => {
     setEditItem({
       ...editItem,
@@ -96,6 +98,13 @@ const ShowItems = () => {
                   name="value"
                   value={editItem.value?.toString()}
                   onChange={OnChangeNumber}
+                />
+                <input
+                  type="text"
+                  placeholder="category"
+                  name="category"
+                  value={editItem.category}
+                  onChange={OnChange}
                 />
 
                 <div style={{ justifyContent: "center" }}>

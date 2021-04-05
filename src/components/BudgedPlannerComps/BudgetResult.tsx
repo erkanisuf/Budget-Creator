@@ -53,12 +53,22 @@ const BudgetResult = () => {
         {budged.negativeRemainings
           ? budged.negativeRemainings < 0 && (
               <BudgetResultWrapper
-                style={{ height: "50px", alignSelf: "center" }}
+                style={{ height: "100%", alignSelf: "center" }}
                 width={20}
                 background="#f31444"
                 direction="column"
               >
-                <span style={{ margin: "0 auto", fontSize: "12px" }}>
+                <span
+                  style={{
+                    margin: "0 auto",
+                    fontSize: "12px",
+                    textAlign: "center",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
                   <CgDanger fontSize="25px" /> Negative balance:
                 </span>
                 <span style={{ margin: "0 auto" }}>

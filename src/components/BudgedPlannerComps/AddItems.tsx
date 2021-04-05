@@ -10,8 +10,11 @@ import {
 } from "./BudgetPlannerStyles";
 import { AiOutlinePlus } from "react-icons/ai";
 import { addBudgetState } from "../../Redux/expensesResultSlice";
+import { v4 as uuidv4 } from "uuid";
+import SaveItems from "./SaveItems";
 const AddItems = () => {
   const reduxBudget = useAppSelector((state) => state.budgedResult.budget);
+
   const focusRef = useRef<HTMLInputElement | null>(null);
   const focusMyBudgetInputRef = useRef<HTMLInputElement | null>(null);
   const dispatch = useAppDispatch(); // Redux
@@ -19,6 +22,7 @@ const AddItems = () => {
     name: "",
     value: 0,
     category: "",
+    itemId: "",
   });
 
   // Input For Budget Reducer
@@ -56,8 +60,8 @@ const AddItems = () => {
       focusMyBudgetInputRef.current?.focus();
       return;
     }
-    dispatch(addItem(item));
-    setItem({ name: "", value: 0, category: "" });
+    dispatch(addItem({ ...item, itemId: uuidv4() }));
+    setItem({ name: "", value: 0, category: "", itemId: "" });
     focusRef.current?.focus();
   };
 
@@ -88,6 +92,7 @@ const AddItems = () => {
             <AiOutlinePlus />
           </PlusButton>
         </form>
+        <SaveItems />
       </BudgetResultWrapper>
 
       <DivAddExpense width={80} direction={`column`} inputwidth={100}>

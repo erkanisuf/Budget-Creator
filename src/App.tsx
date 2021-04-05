@@ -3,36 +3,20 @@ import "./App.css";
 import AddItems from "./components/BudgedPlannerComps/AddItems";
 
 import BudgetResult from "./components/BudgedPlannerComps/BudgetResult";
+import SaveItems from "./components/BudgedPlannerComps/SaveItems";
 import ShowItems from "./components/BudgedPlannerComps/ShowItems";
 import BarCharts from "./components/Charts/BarCharts";
 import CircleChart from "./components/Charts/CircleChart ";
 import Layout from "./Layout/Layout";
 
 function App() {
-  const test = () => {
-    fetch("http://localhost:5000/api/Values/PostExpenseList", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-
-      body: JSON.stringify({
-        user: "g",
-        expenses: [{ name: "gg", value: 2, category: "catkur" }],
-      }),
-    })
-      .then((el) => {
-        return el.json();
-      })
-      .then((el) => console.log(el))
-      .catch((err) => console.log(err));
-  };
+  console.log(process.env.REACT_APP_BACKEND_API, "xD");
 
   return (
     <Layout>
       <div
         style={{
-          width: "100%",
+          width: "50%",
           height: "100%",
           marginTop: "250px",
           display: "flex",
@@ -44,11 +28,11 @@ function App() {
           <BudgetResult />
           <AddItems />
         </div>
-        <div style={{ flex: "2", marginTop: "0" }}>
+        <div style={{ flex: "2" }}>
           <ShowItems />
         </div>
       </div>
-      <div style={{ width: "100%" }}>
+      <div style={{ width: "50%" }}>
         <CircleChart />
         <BarCharts />
       </div>
