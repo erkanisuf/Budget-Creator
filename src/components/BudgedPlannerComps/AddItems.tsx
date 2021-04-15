@@ -66,7 +66,7 @@ const AddItems = () => {
   };
 
   return (
-    <div>
+    <div style={{ margin: "0 auto" }}>
       <BudgetResultWrapper
         width={80}
         background="#474B4F"
@@ -92,7 +92,8 @@ const AddItems = () => {
             <AiOutlinePlus />
           </PlusButton>
         </form>
-        <SaveItems />
+        {/* <SaveItems />  */}
+        {/* Save items in case i want to create backend of this project  */}
       </BudgetResultWrapper>
 
       <DivAddExpense width={80} direction={`column`} inputwidth={100}>
@@ -111,7 +112,7 @@ const AddItems = () => {
             />
           </div>
           <div>
-            <p>Cost</p>
+            <p>Cost €</p>
             <input
               data-testid="inputNumber"
               required
@@ -121,7 +122,6 @@ const AddItems = () => {
               value={item.value?.toString()} // The input takes only strings
               onChange={OnChangeNumber}
             />{" "}
-            €
           </div>
           <div>
             <p>Category</p>

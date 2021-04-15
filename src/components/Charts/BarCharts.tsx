@@ -9,6 +9,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { width } from "../../Layout/Layout";
 import { useAppSelector } from "../../Redux/hooks";
 
 const BarCharts = () => {
@@ -105,13 +106,14 @@ const BarCharts = () => {
   return (
     <div
       style={{
-        width: "60%",
+        width: width > 1024 ? "60%" : "100%",
         height: "600px",
         borderTop: "1px solid #474b4f",
         position: "relative",
         margin: "0 auto",
       }}
     >
+      <h1 style={{ textAlign: "center" }}>Category Chart</h1>
       {!myData.length && (
         <p
           style={{

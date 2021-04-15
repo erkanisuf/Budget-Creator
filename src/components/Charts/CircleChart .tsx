@@ -1,5 +1,6 @@
 import React from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
+import { width } from "../../Layout/Layout";
 import { useAppSelector } from "../../Redux/hooks";
 const CircleChart = () => {
   const expenseResults = useAppSelector((state) => state.budgedResult);
@@ -107,6 +108,7 @@ const CircleChart = () => {
 
   return (
     <div style={{ width: "100%", height: "500px", margin: "0 auto" }}>
+      <h1 style={{ textAlign: "center" }}>Budget Chart</h1>
       <ResponsiveContainer height="100%" width="100%">
         <PieChart width={350} height={300}>
           <Pie
@@ -116,8 +118,8 @@ const CircleChart = () => {
             isAnimationActive={true}
             labelLine={true}
             label={renderCustomizedLabel}
-            outerRadius={170}
-            innerRadius={100}
+            outerRadius={width > 1024 ? 170 : 100}
+            innerRadius={width > 1024 ? 100 : 50}
             fill="#8884d8"
             dataKey="value"
           >

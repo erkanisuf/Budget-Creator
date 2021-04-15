@@ -16,9 +16,9 @@ function App() {
     <Layout>
       <div
         style={{
-          width: "50%",
+          width: "100%",
           height: "100%",
-          marginTop: "250px",
+          marginTop: "50px",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -32,7 +32,7 @@ function App() {
           <ShowItems />
         </div>
       </div>
-      <div style={{ width: "50%" }}>
+      <div style={{ width: "100%" }}>
         <CircleChart />
         <BarCharts />
       </div>

@@ -71,7 +71,7 @@ export const BudgetResultWrapper = styled.div<IBudgetResultWrapper>`
   display: flex;
   flex-direction: ${(props) => props.direction};
   padding: 25px;
-  margin: 0 15px;
+  margin: 5px 15px;
   overflow: hidden;
 
   border-radius: 20px;
@@ -213,6 +213,12 @@ export const Item = styled.div<IItem>`
 
   &:hover {
     background-color: ${divbackground};
+  }
+  @media (max-width: 1024px) {
+    div,
+    form {
+      overflow: hidden;
+    }
   }
 `;
 
