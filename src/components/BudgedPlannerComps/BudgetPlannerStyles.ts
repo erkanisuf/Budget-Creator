@@ -1,4 +1,3 @@
-import { props } from "cypress/types/bluebird";
 import styled from "styled-components";
 //Colors
 const divbackground = "#474B4F";

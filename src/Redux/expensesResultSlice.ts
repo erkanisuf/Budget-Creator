@@ -20,7 +20,7 @@ export const expensesResultSlice = createSlice({
       );
       const remaining = state.budget - expenses;
       // Add Budget
-      console.log(expenses);
+
       return (state = {
         ...state,
         expenses: expenses,

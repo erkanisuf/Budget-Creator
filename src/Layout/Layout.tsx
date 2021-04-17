@@ -1,7 +1,6 @@
 import React from "react";
 
 import { FlexDiv } from "../components/BudgedPlannerComps/BudgetPlannerStyles";
-import { NavContainer } from "./LayoutStyle";
 
 interface Props {
   children: JSX.Element[] | JSX.Element;

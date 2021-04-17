@@ -4,6 +4,7 @@ import { ISaveSessionToDB } from "../../types";
 import { FlexDiv, SaveDBButton } from "./BudgetPlannerStyles";
 import { FaSave, FaDatabase } from "react-icons/fa";
 const SaveItems = () => {
+  // WARNING!: Component not ready yet , waits Backend Server !
   const items = useAppSelector((state) => state.values.items); // Redux Selector (items )
   const budgetResults = useAppSelector((state) => state.budgedResult); // Redux Selector (items )
   const saveSessionToDB = () => {
@@ -19,7 +20,7 @@ const SaveItems = () => {
       },
       dateAdded: "2021-04-05T16:33:07.966Z",
     };
-    console.log(JSON.stringify(datatoSend));
+
     fetch(`${process.env.REACT_APP_BACKEND_API}/api/Values/PostExpenseList`, {
       method: "POST",
       body: JSON.stringify(datatoSend),
