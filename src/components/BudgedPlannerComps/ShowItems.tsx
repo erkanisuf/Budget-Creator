@@ -91,6 +91,7 @@ const ShowItems = () => {
                   name="name"
                   value={editItem.name}
                   onChange={OnChange}
+                  data-testid="inputEdit1"
                 />
                 <input
                   type="number"
@@ -98,6 +99,7 @@ const ShowItems = () => {
                   name="value"
                   value={editItem.value?.toString()}
                   onChange={OnChangeNumber}
+                  data-testid="inputEdit2"
                 />
                 <input
                   type="text"
@@ -105,13 +107,14 @@ const ShowItems = () => {
                   name="category"
                   value={editItem.category}
                   onChange={OnChange}
+                  data-testid="inputEdit3"
                 />
 
                 <div style={{ justifyContent: "center" }}>
-                  <XButton onClick={CancelEdit}>
+                  <XButton onClick={CancelEdit} data-testid="cancelBtn">
                     <TiCancel />
                   </XButton>
-                  <EditButton type="submit">
+                  <EditButton type="submit" data-testid="saveeditBtn">
                     <ImCheckmark />
                   </EditButton>
                 </div>
@@ -122,10 +125,16 @@ const ShowItems = () => {
                 <div>{el.value} €</div>
                 <div>{el.category} </div>
                 <div style={{ justifyContent: "center" }}>
-                  <XButton onClick={() => deleteExpense(index)}>
+                  <XButton
+                    onClick={() => deleteExpense(index)}
+                    data-testid="deleteBtn"
+                  >
                     <AiFillDelete />
                   </XButton>
-                  <EditButton onClick={() => StartEdit(index, el)}>
+                  <EditButton
+                    onClick={() => StartEdit(index, el)}
+                    data-testid="editBtn"
+                  >
                     <FaRegEdit />
                   </EditButton>
                 </div>

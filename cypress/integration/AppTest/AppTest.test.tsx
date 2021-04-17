@@ -18,9 +18,6 @@ describe("Interface", () => {
     // Btns
     const addexpensebtn = cy.get(`[data-testid=addexpensebtn]`).should("exist");
     addexpensebtn.click();
-
-    //View Ports
-    // cy.viewport("iphone-8");
   });
 
   it("Input values with no budget Error", () => {
@@ -32,12 +29,59 @@ describe("Interface", () => {
     cy.on("window:alert", stub);
   });
 
-  it("Input values with correct values", () => {
+  it("Add Button tests for budget and Items", () => {
     cy.get(`[data-testid=addBudgetInput]`).type("2200");
     cy.get(`[data-testid=addBudgetBtn]`).click();
     cy.get(`[data-testid=addexpensebtn]`).click();
     cy.contains("Banana").should("exist");
     cy.contains("35").should("exist");
     cy.contains("Grocery").should("exist");
+  });
+  it("Edit Button test", () => {
+    cy.get(`[data-testid=editBtn]`).click();
+    cy.get(`[data-testid=inputEdit1]`).should("exist");
+    cy.get(`[data-testid=inputEdit2]`).should("exist");
+    cy.get(`[data-testid=inputEdit3]`).should("exist");
+    cy.get(`[data-testid=inputEdit1]`).clear();
+    cy.get(`[data-testid=inputEdit1]`).type("Changed Value");
+  });
+  it("Save Edit btn", () => {
+    cy.get(`[data-testid=saveeditBtn]`).click();
+    cy.contains("Banana").should("not.exist");
+    cy.contains("Changed Value").should("exist");
+  });
+
+  it("Delete Button test", () => {
+    cy.get(`[data-testid=deleteBtn]`).click();
+    cy.contains("Changed Value").should("not.exist");
+    cy.contains("35").should("not.exist");
+    cy.contains("Grocery").should("not.exist");
+  });
+});
+
+describe("Viewports", () => {
+  it("check diffrent views", () => {
+    cy.viewport("macbook-15");
+    cy.wait(200);
+    cy.viewport("macbook-13");
+    cy.wait(200);
+    cy.viewport("macbook-11");
+    cy.wait(200);
+    cy.viewport("ipad-2");
+    cy.wait(200);
+    cy.viewport("ipad-mini");
+    cy.wait(200);
+    cy.viewport("iphone-6+");
+    cy.wait(200);
+    cy.viewport("iphone-6");
+    cy.wait(200);
+    cy.viewport("iphone-5");
+    cy.wait(200);
+    cy.viewport("iphone-4");
+    cy.wait(200);
+    cy.viewport("iphone-3");
+    cy.wait(200);
+    cy.viewport(1500, 1500);
+    cy.wait(200);
   });
 });
